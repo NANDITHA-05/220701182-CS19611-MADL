@@ -8,24 +8,31 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/emailid"
+        android:id="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter College Email id..."
+        android:hint='"Enter the user name.."'
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/etPinNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter password...."
+        android:hint='"Enter the Pin Number.."'
         android:inputType="text" />
 
     <Button
-        android:id="@+id/validatebtn"
+        android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Validate" />
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/btClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear" />
 </LinearLayout>
+
