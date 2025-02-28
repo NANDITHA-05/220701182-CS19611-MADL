@@ -1,6 +1,6 @@
-package com.example.validation
+package com.example.mad_lab_ex_6
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -8,44 +8,47 @@ import android.widget.EditText
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val etUserName: EditText =findViewById(R.id.etUserName)
+        val etPinNumber: EditText=findViewById(R.id.etPinNumber)
+        val btLogin: Button =findViewById(R.id.btLogin)
+        val btClear:Button=findViewById(R.id.btClear)
 
-        val emailid: EditText = findViewById(R.id.emailid)
-        val password : EditText=findViewById(R.id.password)
-        val validate : Button =findViewById(R.id.validatebtn)
+        btLogin.setOnClickListener {
+            val userName=etUserName.text.toString().trim()
+            val pinNumber=etPinNumber.text.toString().trim()
 
-
-
-        validate.setOnClickListener {
-            val email=emailid.text.toString()
-            val pass=password.text.toString()
-            if(email.isEmpty() || pass.isEmpty() )
+            if(userName.isEmpty()|| pinNumber.isEmpty())
             {
-                Toast.makeText(this,"All fields are Mandatory..!",Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-
-            }
-
-            else if(!email.matches(Regex("^[A-Za-z0-9._%+-]+@rajalakshmi.edu.in$")))
-            {
-                Toast.makeText(this,"Invalid emailid..",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"All values are mandatory",Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            else if(!pass.matches(Regex("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")))
+            if(!userName.matches(Regex("^[a-zA-Z]+$")))
             {
-                Toast.makeText(this,"Invalid password...",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Invalid user name..",Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            else
+
+            if(!pinNumber.matches(Regex("^[0-9]{4}$")))
             {
-                Toast.makeText(this,"LOGIN SUCCESSFUL...!",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Tnvalid pin number...",Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
+            val intent= Intent(this,MainActivity2::class.java)
+            startActivity(intent)
         }
+        btClear.setOnClickListener {
 
+            etUserName.text.clear()
+            etPinNumber.text.clear()
+        }
     }
 }
+
+
+
+
+
